@@ -60,7 +60,7 @@ def train_model(args):
     optimizer = Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=0)
     
     callbacks = [MyCallback(args), 
-                 SaveModelCallback(save_dir=args.save_path, top=-1)]
+                 SaveModelCallback(save_dir=args.save_path, top=5)]
     
     criterion = MarginRankingLoss(args.margin)
     val_metric = [ValidMetric(save_path=args.save_path, data=read_jsonl(data_paths['val']))]
